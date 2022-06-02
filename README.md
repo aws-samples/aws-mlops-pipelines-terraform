@@ -91,7 +91,7 @@ Terraform will store the token in this file:
 /home/ec2-user/.terraform.d/credentials.tfrc.json
 ```
 
-<img src="images/Terraform-Login.png" width="940"/>
+<!-- <img src="images/Terraform-Login.png" width="940"/> -->
 
 ## Provision infrastructure using Terraform Cloud
 
