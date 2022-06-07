@@ -51,7 +51,7 @@ When you sign up, you'll receive an email asking you to confirm your email addre
 
 After you create your account, the Terraform Cloud Web UI will prompt you to create a new organization. Your organization is free, and the members you add will be able to collaborate on your workspaces and share private modules.
 
-Enter aws-terraform as organization name and an email address. You can use the same email address that you used for your account.
+Enter your own `unique organization name` (here `'aws-terraform'` as example) and an email address. You can use the same email address that you used for your account.
 
 <img src="images/Terraform-Org.png" width="940"/>
 
@@ -65,7 +65,7 @@ Click CLI-driven workflow.
 
 <img src="images/Terraform-Workspace-2.png" width="940"/>
 
-Enter **aws-terraform-lambda-container** as the Workspace Name and click **Create workspace**.
+Enter `your own unique Workspace name` (here `aws-terraform-lambda-container` as example) and click **Create workspace**.
 
 <img src="images/Terraform-Workspace-2.png" width="940"/>
 
