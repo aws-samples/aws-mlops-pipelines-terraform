@@ -127,6 +127,35 @@ terraform apply
 ```
 ###	Finish
 Go to your AWS CodePipeline console, you can check the pipeline running progress. 
+
+### Inferencing
+
+To invoke and test the endpoint, you can copy 'test.csv' from 'Notebooks' folder to your own notebook folder, and run the following code within a notebook.
+
+```dotnetcli
+import pandas as pd
+import numpy as np
+import sagemaker
+import boto3
+from sagemaker import get_execution_role
+
+test_data=pd.read_csv('test.csv',header=None)
+testdata1=test_data.iloc[0:1,1:]
+
+runtime = boto3.client("sagemaker-runtime")
+Endpoint_name=<your endpoint name> # update to your own endpoint name
+
+prediction = runtime.invoke_endpoint(
+    EndpointName=Endpoint_name,
+    Body=testdata1.to_csv(header=False, index=False).encode("utf-8"),
+    ContentType="text/csv",
+    Accept= "text/csv",
+)
+
+print(prediction["Body"].read())
+```
+
+
 ### Cleaning up
 To avoid incurring future charges, please execute the following clean-up steps. Login to the AWS Console and enter your credentials
 1.	Select Services from the top menu, and choose Amazon SageMaker
