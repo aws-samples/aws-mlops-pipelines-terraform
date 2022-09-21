@@ -1,6 +1,6 @@
 
 ## MLOps
-MLOps focuses on realizing the value from any data science activity through the adoption of DevOps and engineering best practices to build solutions and products that have an ML component at their core. It provides the standards, tools, and framework that supports the work of data science teams to take their ideas from the whiteboard to production in a timely, secure, traceable, and repeatable manner. 
+MLOps focuses on realizing the value from any data science activity through the adoption of DevOps and engineering best practices to build solutions and products that have an ML component at their core. It provides the standards, tools, and framework that supports the work of data science teams to take their ideas from the whiteboard to production in a timely, secure, traceable, and repeatable manner.  
 
 ## Benefits
 With this MLOps architecture, AWS partners can enable their customers to accelerate operationalizing ML models in production to achieve the benefits of an automated machine learning lifecycle management by reducing the typical lifecycle for a significantly faster delivery time.
