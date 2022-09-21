@@ -6,4 +6,4 @@ petclinic/target/**
 terraform/.terraform.lock.hcl
 **/*.iml
 **/*/target
-.idea/
+.idea/ 
