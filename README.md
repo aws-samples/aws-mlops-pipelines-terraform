@@ -102,6 +102,7 @@ Click the **Variables** tab at the top to create **Terraform Variables** AWS_REG
 ```
 git clone https://github.com/aws-samples/aws-mlops-pipelines-terraform.git
 ```
+There is 'Notebooks' folder, which contains two jupyter notebook examples. One uses SageMaker workflow pipeline within the notebook. The other one uses SageMaker SDK without pipeline. 
 
 ### Push contents to your own Github repos
  	Push “modelbuild-pipeline” folder contents to your own Github repository “modelbuild-pipeline”.
