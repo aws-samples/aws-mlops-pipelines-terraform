@@ -34,6 +34,16 @@ We have received a lot of feedback from a number of AWS Strategic partners and c
 * Terraform has workspaces, which makes it easier to manage multiple environments.
 * Using Terraform can expedite deployment process because development team lacks skills and experiences in CloudFormation.   
 
+## Prerequisites
+
+*	Terraform CLI installed on your local machine or cloud workspace (if you use cloud workspace)
+*	AWS CLI installed
+* An AWS account 
+* Your AWS credentials. You can create a new Access Key on this page.
+* Github repositories. One repository is for build repository (“modelbuild-pipeline”), and the other one is for deploy repository (“modeldeploy-pipeline”). The repository names match those in the variable file. 
+
+
+
 ## Setup Terraform Cloud
 Terraform Cloud is an application that manages Terraform runs in a consistent and reliable environment instead of on your local machine. It stores shared state and secret data, and connects to version control systems so that you and your team can work on infrastructure as code within your usual code workflow. It also has a private registry for sharing Terraform modules.
 
@@ -69,7 +79,18 @@ Enter `your own unique Workspace name` (here `aws-terraform-lambda-container` as
 
 <img src="images/Terraform-Workspace-2.png" width="940"/>
 
-Copy the Example code and paste it inside the provider.tf file.
+Copy the Example code and paste it inside the main.tf file. The organization and workspace names are those you created in the previous steps.  
+```
+terraform {
+  cloud {
+    organization = "<your organization name>"
+
+    workspaces {
+      name = "<your workspace name>"
+    }
+  }
+}
+```
 
 ### Configure AWS credentials
 
@@ -77,68 +98,45 @@ Click the **Variables** tab at the top to create **Terraform Variables** AWS_REG
 
 <img src="images/Terraform-Vars.png" width="940"/>
 
-### Terraform login
-
-Using Cloud9 environment, open a new Terminal and use the following command:
-
-```bash
-terrafom login
+### Clone the repository to your local machine or cloud workspace
 ```
-At the prompt, enter yes and follow the instructions to generate a token using the url : https://app.terraform.io/app/settings/tokens?source=terraform-login.
-
-Terraform will store the token in this file: 
-```bash
-/home/ec2-user/.terraform.d/credentials.tfrc.json
+git clone https://github.com/aws-samples/aws-mlops-pipelines-terraform.git
 ```
+Update 'main.tf' and 'variables.tf' using your own parameters under 'terraform' folder.
 
-<!-- <img src="images/Terraform-Login.png" width="940"/> -->
+### Push contents to your own Github repos
+ 	Push “modelbuild-pipeline” folder contents to your own Github repository “modelbuild-pipeline”.
+ 	Push “modeldeploy-pipeline” folder to your own Github repository “modeldeploy-pipeline”.
 
-## Provision infrastructure using Terraform Cloud
+###	 Terraform login
+In your workspace or local machine, open a new Terminal,go to the 'terraform' folder, and use the following command:
 
-### Terraform CLI
+```
+cd ~/terraform
+terraform login
+```
+At the prompt, enter 'yes' and follow the instructions to generate a token.
+Terraform will store the token in your workspace or local machine.
 
-Inside the Cloud9 terminal run:
-
-```bash
-cd ~/environment/aws-terraform-lambda-container/terraform
+###	Provision infrastructure using Terraform Cloud
+Go to your terraform code folder “terraform” run the following commands.
+```
 terraform init
-```
-<!-- <img src="images/Terraform-Init.png" width="940"/> -->
-
-```bash
 terraform plan
 terraform apply
 ```
-
-<!-- <img src="images/Terraform-Apply-1.png" width="940"/> -->
-
-<!-- Here are the results of the **terraform apply** -->
-
-<!-- <img src="images/Terraform-Apply-2.png" width="940"/> -->
-
-In order to cleanup the resources, run the following command:
-
-```bash
+###	Finish
+Go to your AWS CodePipeline console, you can check the pipeline running progress. 
+### Cleaning up
+To avoid incurring future charges, please execute the following clean-up steps. Login to the AWS Console and enter your credentials
+1.	Select Services from the top menu, and choose Amazon SageMaker
+Endpoints
+	Go to Inference / Endpoints on the left-hand menu, click the radio button next to each endpoint.
+	Select Actions and then Delete, then confirm delete hitting the Delete button.
+2.	Select Services from the top menu, and choose S3
+	Delete all S3 buckets created for this project
+3.	Remove AWS infrastructure, run the following command from your “terraform” folder
+```
 terraform destroy
 ```
-<!-- <img src="images/Terraform-Destroy-1.png" width="940"/> -->
-
-Enter **yes** at the prompt.
-
-<!-- <img src="images/Terraform-Destroy-2.png" width="940"/> -->
-
-### Terraform Cloud UI
-
-Login into your Terraform Cloud UI using your account at : https://app.terraform.io
-
-From the **Queue plan** drop down, click **Queue plan** button.
-
-<!-- <img src="images/Terraform-Cloud-UI-1.png" width="940"/> -->
-
-Click **Confirm & Apply**.
-
-<!-- <img src="images/Terraform-Cloud-UI-2.png" width="940"/> -->
-
-Add a comment to explain this action and then click **Confirm Plan** button.
-
-<!-- <img src="images/Terraform-Cloud-UI-3.png" width="940"/> -->
+At the prompt, enter 'yes' and follow the instructions to destroy resources. 

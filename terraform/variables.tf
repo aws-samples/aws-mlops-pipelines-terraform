@@ -8,11 +8,11 @@ variable "project_name" {
 }
 variable "project_id" {
   description = "Project ID"
-  default     = "03062022"
+  default     = "<your project id>"
 }
 variable "region" {
   description = "AWS region"
-  default     = "us-east-1"
+  default     = "<your region>"
 }
 
 variable "repository_branch" {
@@ -22,25 +22,25 @@ variable "repository_branch" {
 
 variable "repository_owner" {
   description = "GitHub repository owner"
-  default     = "ibuchh"
+  default     = "<your id>"
 }
 
 variable "artifacts_bucket_name" {
   description = "S3 Bucket for storing artifacts"
-  default     = "sagemaker-artifacts-bucket-08262021"
+  default     = "<your bucket>"
 }
 
 variable "github_token" {
   description = "GitHub token"
-  default     = "d3189a58bee6f9b3afd55d11c844ea651172b6e3"
+  default     = "<your token>"
 }
 
 variable "build_repository_name" {
   description = "GitHub repository name"
-  default     = "mlops-sagemaker-model-build"
+  default     = "modelbuild-pipeline"
 }
 
 variable "deploy_repository_name" {
   description = "GitHub repository name"
-  default     = "mlops-sagemaker-model-deploy"
+  default     = "modeldeploy-pipeline"
 }

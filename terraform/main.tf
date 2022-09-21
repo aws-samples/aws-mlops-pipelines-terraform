@@ -1,6 +1,6 @@
 provider "aws" {
   region  = var.region
-  profile = "ibuchh-poc"
+  profile = "<your profile>"
 }
 
 provider "github" {
@@ -15,4 +15,14 @@ provider "random" {
 
 provider "template" {
   version = "~> 2.2.0"
+}
+
+terraform {
+  cloud {
+    organization = "<your organization name>"
+
+    workspaces {
+      name = "<your workspace name>"
+    }
+  }
 }
