@@ -27,14 +27,14 @@ resource "aws_iam_role" "tf_mlops_role" {
   )
   force_detach_policies = false
   max_session_duration  = 3600
-  name                  = "tf-mlops-role-${var.env}-0306"
+  name                  = "tf-mlops-role-${var.env}-1007"
   path                  = "/service-role/"
   tags                  = {}
 }
 
 resource "aws_iam_policy" "tf_mlops_policy" {
   description = "Policy used in trust relationship with CodeBuild (${var.env})"
-  name        = "tf-mlops-policy-${var.env}-0306"
+  name        = "tf-mlops-policy-${var.env}-1007"
   path        = "/service-role/"
   policy = jsonencode(
     {

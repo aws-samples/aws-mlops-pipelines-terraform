@@ -1,6 +1,5 @@
 provider "aws" {
   region  = var.region
-  profile = "<your profile>"
 }
 
 provider "github" {

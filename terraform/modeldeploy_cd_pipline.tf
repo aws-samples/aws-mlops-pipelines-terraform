@@ -1,5 +1,5 @@
 resource "aws_codepipeline" "sm_cd_pipeline" {
-  name     = "sm-cd-pipeline"
+  name     = "modeldeploy-pipeline"
   role_arn = aws_iam_role.tf_mlops_role.arn
   tags = {
     Environment = var.env

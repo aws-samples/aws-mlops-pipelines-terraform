@@ -1,5 +1,5 @@
 resource "aws_codepipeline" "sm_ci_pipeline" {
-  name     = "sm-ci-pipeline"
+  name     = "modelbuild-pipeline"
   role_arn = aws_iam_role.tf_mlops_role.arn
   tags = {
     Environment = var.env
