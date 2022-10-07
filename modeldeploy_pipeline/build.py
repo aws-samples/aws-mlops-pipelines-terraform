@@ -7,13 +7,9 @@ import boto3
 from botocore.exceptions import ClientError
 
 logger = logging.getLogger(__name__)
+sm_client = boto3.client("sagemaker")
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--region")
-args, _ = parser.parse_known_args()
-sm_client = boto3.client("sagemaker", region_name = args.region)
 
- 
 def get_approved_package(model_package_group_name):
     """Gets the latest approved model package for a model package group.
 
@@ -83,24 +79,11 @@ def extend_config(args, model_package_arn, stage_config):
         "sagemaker:project-id": args.sagemaker_project_id,
         "sagemaker:project-name": args.sagemaker_project_name,
     }
-    # Add tags from Project
-    get_pipeline_custom_tags(args, sm_client, new_tags)
-
     return {
         "Parameters": {**stage_config["Parameters"], **new_params},
         "Tags": {**stage_config.get("Tags", {}), **new_tags},
     }
 
-def get_pipeline_custom_tags(args, sm_client, new_tags):
-    try:
-        response = sm_client.list_tags(
-                ResourceArn=args.sagemaker_project_arn)
-        project_tags = response["Tags"]
-        for project_tag in project_tags:
-            new_tags[project_tag["Key"]] = project_tag["Value"]
-    except:
-        logger.error("Error getting project tags")
-    return new_tags
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -109,15 +92,10 @@ if __name__ == "__main__":
     parser.add_argument("--model-package-group-name", type=str, required=True)
     parser.add_argument("--sagemaker-project-id", type=str, required=True)
     parser.add_argument("--sagemaker-project-name", type=str, required=True)
-    parser.add_argument("--sagemaker-project-arn", type=str, required=False)
     parser.add_argument("--import-staging-config", type=str, default="staging-config.json")
     parser.add_argument("--import-prod-config", type=str, default="prod-config.json")
     parser.add_argument("--export-staging-config", type=str, default="staging-config-export.json")
-    #parser.add_argument("--export-staging-params", type=str, default="staging-params-export.json")
-    parser.add_argument("--export-staging-tags", type=str, default="staging-tags-export.json")
     parser.add_argument("--export-prod-config", type=str, default="prod-config-export.json")
-    #parser.add_argument("--export-prod-params", type=str, default="prod-params-export.json")
-    parser.add_argument("--export-prod-tags", type=str, default="prod-tags-export.json")
     args, _ = parser.parse_known_args()
 
     # Configure logging to output the line number and message
@@ -134,10 +112,9 @@ if __name__ == "__main__":
     with open(args.export_staging_config, "w") as f:
         json.dump(staging_config, f, indent=4)
 
-    # Write the prod config for code pipeline
+    # Write the prod config
     with open(args.import_prod_config, "r") as f:
         prod_config = extend_config(args, model_package_arn, json.load(f))
     logger.debug("Prod config: {}".format(json.dumps(prod_config, indent=4)))
     with open(args.export_prod_config, "w") as f:
         json.dump(prod_config, f, indent=4)
-    

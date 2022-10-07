@@ -1,6 +1,6 @@
 {
   "Parameters": {
-    "StageName": "prod-0403",
+    "StageName": "prod-0306",
     "EndpointInstanceCount": "1",
     "EndpointInstanceType": "ml.m5.large"
   }
