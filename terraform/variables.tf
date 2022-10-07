@@ -2,7 +2,7 @@
 
 variable "repository_branch" {
   description = "Repository branch to connect to"
-  default     = "main"
+  default     = "<your branch>"
 }
 
 variable "env" {
@@ -24,7 +24,7 @@ variable "region" {
 
 variable "repository_owner" {
   description = "GitHub repository owner"
-  default     = "wadave"
+  default     = "<your id>"
 }
 
 variable "build_repository_name" {
@@ -39,10 +39,10 @@ variable "deploy_repository_name" {
 
 variable "artifacts_bucket_name" {
   description = "S3 Bucket for storing artifacts"
-  default     = "tf-build-bucket-10072022"
+  default     = "<your bucket name>"
 }
 
 variable "github_token" {
   description = "GitHub token"
-  default     = "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"
+  default     = "<your token>"
 }
