@@ -28,7 +28,7 @@ The key AWS services are:
 * **Amazon CloudWatch** for monitoring SageMaker tuning and training jobs.
 
 ## Why Terraform
-We have received a lot of feedback from a number of AWS Strategic partners and customers about their MLOps use cases and discovered that they are using Terraform for their infrastructure automation. As a result of this feedback, we decided to use Tarraform to help them in their efforts. Here are additional reasons for using Terraform for MLOps use cases:
+We have received a lot of feedback from a number of AWS Strategic partners and customers about their MLOps use cases and discovered that they are using Terraform for their infrastructure automation. As a result of this feedback, we decided to use Terraform to help them in their efforts. Here are additional reasons for using Terraform for MLOps use cases:
 * Terraform can define infrastructure and manage infrastructures’ lifecycle directly. To use SageMaker Studio project, a project template should be created in advance and saved in Service Catalog. The template needs to define infrastructure using CloudFormation.
 * Terraform supports multi-cloud platforms. User can provision services on multiple cloud platform.
 * Terraform has workspaces, which makes it easier to manage multiple environments.
