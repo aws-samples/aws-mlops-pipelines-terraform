@@ -39,7 +39,7 @@ We have received a lot of feedback from a number of AWS Strategic partners and c
 *	Terraform CLI installed on your local machine or cloud workspace (if you use cloud workspace)
 *	AWS CLI installed
 * An AWS account 
-* Your AWS credentials. You can create a new Access Key on this page.
+* Your AWS credentials.
 * Github repositories. One repository is for build repository (“modelbuild-pipeline”), and the other one is for deploy repository (“modeldeploy-pipeline”). The repository names match those in the variable file. 
 
 
